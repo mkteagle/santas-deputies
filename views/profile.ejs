@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="/js/script.js"></script>
+
     <style>
         body        { word-wrap:break-word; }
     </style>
 </head>
-<body>
+<body onload="getNames()">
 <div id="nav">
     <div id="pull-right">
         <ul>
@@ -41,7 +41,8 @@
                     <strong>id</strong>: <%= user.google.id %><br>
                     <strong>token</strong>: <%= user.google.token %><br>
                     <strong>email</strong>: <%= user.google.email %><br>
-                    <strong>name</strong>: <%= user.google.name %>
+                    <strong>name</strong>: <%= user.google.name %><br>
+                    <strong>nickname</strong>: <%= user.google.nickname %>
                 </p>
 
             </div>
@@ -49,7 +50,7 @@
         <div class="col-sm-6">
             <div class="well">
                 <p>
-                    <button>Secret Santa</button>
+                    <a href="/results"><button>Secret Santa</button></a>
                 </p>
             </div>
         </div>
@@ -57,5 +58,6 @@
     </div>
 
 </div>
+<script src="script.js"></script>
 </body>
 </html>

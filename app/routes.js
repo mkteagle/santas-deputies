@@ -1,5 +1,9 @@
 // app/routes.js
 module.exports = function(app, passport) {
+        // sample route with a route the way we're used to seeing it
+        app.get('/results', function(req, res) {
+        res.send('this is a sample!');
+    });
 
     // =====================================
     // HOME PAGE (with login links) ========
