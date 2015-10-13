@@ -4,16 +4,14 @@
 function getNames () {
     var names = ["Alisha", "Brian", "Mike", "Jen", "Alli", "Jordan", "Vanessa", "Austin"];
     var kids = ["Annika", "Adalyn", "Avery", "Madison", "Jed"];
-
-    //if (<%= user.google.alias %> == 'Michael Teagle') {
-    //
-    //
-    //    names = names.filter(function(n){ return n != name });
-    //    names = names.filter(function(n){ return n != undefined});
-    //
-    //}
-    //
-    //}
+    var nickname = '';
+    if (user.google.name == 'Michael Teagle') {
+        nickname = 'Mike';
+        var namesfiltername = names.filter(function(n){ return n != nickname });
+        var namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+        console.log(namesfinal);
+        //document.getElementById("allnames").innerHTML = namesfinal;
+    }
 
 }
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login to Santa's Deputies</title>
+    <title>Santa's Deputies Results</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel="stylesheet" href="style.css">
@@ -10,7 +10,79 @@
         body        { padding-top:80px; }
     </style>
 </head>
-<body>
+<body onload="getNames()">
+<div class="container">
+    <div class="jumbotron text-center">
+        <div id="welcomename"><%= user.google.name %></div>
+        <div id="allnames">these are all of our names</div>
+    </div>
+</div>
+<!--<script src="script.js"></script>-->
+<script>
+    function getNames () {
+        var names = ["Alisha", "Brian", "Mike", "Jen", "Alli", "Jordan", "Vanessa", "Austin", "Annika", "Ady", "Avery", "Madison", "Jed"];
+        var nickname = '';
+        var namesfiltername = [];
+        var namesfinal = [];
+        var innerName = document.getElementById("welcomename").innerText;
+        var lastYear = '';
 
+        if (innerName === 'Michael Teagle') {
+            nickname = 'Mike';
+            lastYear = 'Annika';
+            namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Madison' && n != 'Jen' && n != lastYear) });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Jennifer Jarrett' || innerName === 'Jennifer Teagle') {
+            nickname = 'Jen';
+            namesfiltername = names.filter(function(n){ return n != nickname });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Brian LeBaron') {
+            namesfiltername = names.filter(function(n){ return n != innerName });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Alisha LeBaron') {
+            namesfiltername = names.filter(function(n){ return n != innerName });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Allison Jarrett') {
+            nickname = 'Alli'
+            namesfiltername = names.filter(function(n){ return n != nickname });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Jordan Jarrett') {
+            namesfiltername = names.filter(function(n){ return n != innerName });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Vanessa Jarrett') {
+            namesfiltername = names.filter(function(n){ return n != innerName });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+        if (innerName === 'Austin Jarrett') {
+            namesfiltername = names.filter(function(n){ return n != innerName });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            console.log(namesfinal);
+            document.getElementById("allnames").innerHTML = namesfinal;
+        }
+
+
+
+    }
+</script>
 </body>
 </html>

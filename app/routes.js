@@ -1,9 +1,11 @@
 // app/routes.js
 module.exports = function(app, passport) {
         // sample route with a route the way we're used to seeing it
-        app.get('/results', function(req, res) {
-        res.send('this is a sample!');
-    });
+        app.get('/results', isLoggedIn, function(req, res) {
+            res.render('results', {
+                user: req.user // get the user out of session and pass to template
+            });
+        });
 
     // =====================================
     // HOME PAGE (with login links) ========
@@ -19,7 +21,7 @@ module.exports = function(app, passport) {
     app.get('/login', function(req, res) {
 
         // render the page and pass in any flash data if it exists
-        res.render('login.ejs', { message: req.flash('loginMessage') });
+            res.render('login.ejs', { message: req.flash('loginMessage') });
     });
 
     // process the login form
@@ -94,6 +96,6 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/login');
 }
 
