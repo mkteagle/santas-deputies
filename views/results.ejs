@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel="stylesheet" href="style.css">
+    <!--<script src="http://requirejs.org/docs/release/2.1.20/minified/require.js"></script>-->
     <style>
         body        { padding-top:80px; }
     </style>
@@ -13,70 +14,207 @@
 <body onload="getNames()">
 <div class="container">
     <div class="jumbotron text-center">
-        <div id="welcomename"><%= user.google.name %></div>
-        <div id="allnames">these are all of our names</div>
+            <div id="allnames">these are all of our names</div>
+            <div id="welcomename"><%= user.google.name %></div>
+            <h3>Here is your Giftee:</h3>
+            <div id="yourname">here is your pick?</div>
+        </div>
+    <div class="jumbotron text-center">
+        <div id="jenname">Jennifer Teagle</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="jname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="madiname">Madison Teagle</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="mname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="alishaname">Alisha LeBaron</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="aname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="brianname">Brian LeBaron</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="bname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="annikaname">Brian LeBaron</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="anname">here is your pick?</div>
     </div>
 </div>
 <!--<script src="script.js"></script>-->
 <script>
     function getNames () {
         var names = ["Alisha", "Brian", "Mike", "Jen", "Alli", "Jordan", "Vanessa", "Austin", "Annika", "Ady", "Avery", "Madison", "Jed"];
+        var kids = ["Annika", "Ady", "Avery", "Madison", "Jed"];
+        var names1 = names.filter(function(n){ return (n != nickname && n != undefined)});
         var nickname = '';
+        var giftee = '';
         var namesfiltername = [];
         var namesfinal = [];
+        var finale = '';
         var innerName = document.getElementById("welcomename").innerText;
+        var jenName = document.getElementById("jenname").innerText;
+        var madiName = document.getElementById("madiname").innerText;
+        var alishaName = document.getElementById("alishaname").innerText;
+        var brianName = document.getElementById("brianname").innerText;
+        var annikaName = document.getElementById("annikaname").innerText;
+//        var adalynName = document.getElementById("adalynname").innerText;
+//        var averyName = document.getElementById("averyname").innerText;
+//        var alliName = document.getElementById("alliname").innerText;
+//        var jordanName = document.getElementById("jordanname").innerText;
+//        var vanessaName = document.getElementById("vanessaname").innerText;
+//        var jedName = document.getElementById("jedname").innerText;
+//        var austinName = document.getElementById("austinname").innerText;
         var lastYear = '';
+        var mike = [];
+        var jen = [];
+        var madison = [];
+        var alisha = [];
+        var brian = [];
+        var annika = [];
+        var adalyn = [];
+        var avery = [];
+        var allison = [];
+        var jordan = [];
+        var vanessa = [];
+        var jed = [];
+        var austin = [];
+
 
         if (innerName === 'Michael Teagle') {
             nickname = 'Mike';
             lastYear = 'Annika';
             namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Madison' && n != 'Jen' && n != lastYear) });
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
-            document.getElementById("allnames").innerHTML = namesfinal;
+            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+
+            mike.push ({name: nickname , lastYear: lastYear , giftee: finale});
+            for(var i = names1.length - 1; i >= 0; i--) {
+                if(names1[i] === finale) {
+                    names1.splice(i, 1);
+                }
+            }
+
+            console.log(mike);
+            document.getElementById("allnames").innerHTML = names1;
+            document.getElementById("yourname").innerHTML = finale;
+
         }
-        if (innerName === 'Jennifer Jarrett' || innerName === 'Jennifer Teagle') {
+        if (jenName === 'Jennifer Jarrett' || jenName === 'Jennifer Teagle') {
             nickname = 'Jen';
-            namesfiltername = names.filter(function(n){ return n != nickname });
+            lastYear = 'Vanessa';
+            namesfiltername = names1.filter(function(n){ return n != nickname && n != 'Mike' && n != "Madison" && n != lastYear});
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
+            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+            jen.push ({name: nickname , lastYear: lastYear , giftee: finale});
+            for(var i = names1.length - 1; i >= 0; i--) {
+                if(names1[i] === finale) {
+                    names1.splice(i, 1);
+                }
+            }
+            console.log(jen);
             document.getElementById("allnames").innerHTML = namesfinal;
+            document.getElementById("jname").innerHTML = finale;
         }
-        if (innerName === 'Brian LeBaron') {
-            namesfiltername = names.filter(function(n){ return n != innerName });
+        if (madiName === 'Madison Teagle') {
+            nickname = 'Madison';
+            namesfiltername = names.filter(function(n){ return (n != nickname && n != nickname && n != 'Jen' && n != lastYear) });
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
-            document.getElementById("allnames").innerHTML = namesfinal;
+            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+
+            mike.push ({name: nickname , lastYear: 'Avery', giftee: finale});
+            for(var i = names1.length - 1; i >= 0; i--) {
+                if(names1[i] === finale) {
+                    names1.splice(i, 1);
+                }
+            }
+
+            console.log(madison);
+            document.getElementById("allnames").innerHTML = names1;
+            document.getElementById("mname").innerHTML = finale;
+
         }
-        if (innerName === 'Alisha LeBaron') {
-            namesfiltername = names.filter(function(n){ return n != innerName });
+        if (brianName === 'Brian LeBaron') {
+            nickname = 'Brian';
+            lastYear = 'Mike';
+            namesfiltername = names.filter(function(n){ return (n != nickname && n != nickname && n != 'Alisha' && n != 'Ady' && n != 'Avery' && n != 'Annika' && n != lastYear) });
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
-            document.getElementById("allnames").innerHTML = namesfinal;
+            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+
+            brian.push ({name: nickname , lastYear: lastYear, giftee: finale});
+            for(var i = names1.length - 1; i >= 0; i--) {
+                if(names1[i] === finale) {
+                    names1.splice(i, 1);
+                }
+            }
+
+            console.log(brian);
+            document.getElementById("allnames").innerHTML = names1;
+            document.getElementById("bname").innerHTML = finale;
+        }
+        if (alishaName === 'Alisha LeBaron') {
+            nickname = "Alisha";
+            lastYear = 'Austin';
+            namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Ady' && n != 'Avery' && n != 'Annika' && n != 'Brian' && n != lastYear) });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+
+            alisha.push ({name: nickname , lastYear: lastYear, giftee: finale});
+            for(var i = names1.length - 1; i >= 0; i--) {
+                if(names1[i] === finale) {
+                    names1.splice(i, 1);
+                }
+            }
+
+            console.log(alisha);
+            document.getElementById("allnames").innerHTML = names1;
+            document.getElementById("aname").innerHTML = finale;
+        }
+        if (annikaName === 'Annika LeBaron') {
+            nickname = "Annika";
+            lastYear = 'Jen';
+            namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Alisha' && n != 'Brian' && n != 'Ady' && n != 'Avery' && n != lastYear) });
+            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+
+            annika.push ({name: nickname , lastYear: lastYear, giftee: finale});
+            for(var i = names1.length - 1; i >= 0; i--) {
+                if(names1[i] === finale) {
+                    names1.splice(i, 1);
+                }
+            }
+
+            console.log(annika);
+            document.getElementById("allnames").innerHTML = names1;
+            document.getElementById("anname").innerHTML = finale;
         }
         if (innerName === 'Allison Jarrett') {
-            nickname = 'Alli'
-            namesfiltername = names.filter(function(n){ return n != nickname });
+            nickname = 'Alli';
+            lastYear = 'Jordan';
+            namesfiltername = names.filter(function(n){ return n != nickname && n != lastYear});
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
             document.getElementById("allnames").innerHTML = namesfinal;
         }
         if (innerName === 'Jordan Jarrett') {
-            namesfiltername = names.filter(function(n){ return n != innerName });
+            lastYear = 'Alisha';
+            namesfiltername = names.filter(function(n){ return n != innerName & n !== 'Vanessa' && n != 'Jed' && n != lastYear});
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
             document.getElementById("allnames").innerHTML = namesfinal;
         }
         if (innerName === 'Vanessa Jarrett') {
-            namesfiltername = names.filter(function(n){ return n != innerName });
+            lastYear = 'Brian';
+            namesfiltername = names.filter(function(n){ return n != innerName && n != 'Jordan' && n != 'Jed' && n != lastYear });
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
             document.getElementById("allnames").innerHTML = namesfinal;
         }
         if (innerName === 'Austin Jarrett') {
-            namesfiltername = names.filter(function(n){ return n != innerName });
+            lastYear = 'Ady';
+            namesfiltername = names.filter(function(n){ return n != innerName & n != lastYear});
             namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            console.log(namesfinal);
             document.getElementById("allnames").innerHTML = namesfinal;
         }
 
