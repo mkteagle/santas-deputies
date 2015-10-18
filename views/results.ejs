@@ -17,7 +17,7 @@
             <div id="allnames">these are all of our names</div>
             <div id="welcomename"><%= user.google.name %></div>
             <h3>Here is your Giftee:</h3>
-            <div id="yourname">here is your pick?</div>
+            <div id="mikename">here is your pick?</div>
         </div>
     <div class="jumbotron text-center">
         <div id="jenname">Jennifer Teagle</div>
@@ -40,9 +40,44 @@
         <div id="bname">here is your pick?</div>
     </div>
     <div class="jumbotron text-center">
-        <div id="annikaname">Brian LeBaron</div>
+        <div id="annikaname">Annika LeBaron</div>
         <h3>Here is your Giftee:</h3>
         <div id="anname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="adyname">Adalyn LeBaron</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="adname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="averyname">Avery LeBaron</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="avname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="alliname">Allison Jarrett</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="alname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="jordanname">Jordan Jarrett</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="jorname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="vanessaname">Vanessa Jarrett</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="vname">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="jedname">Jed Jarrett</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="jename">here is your pick?</div>
+    </div>
+    <div class="jumbotron text-center">
+        <div id="austinname">Austin Jarrett</div>
+        <h3>Here is your Giftee:</h3>
+        <div id="auname">here is your pick?</div>
     </div>
 </div>
 <!--<script src="script.js"></script>-->
@@ -50,175 +85,65 @@
     function getNames () {
         var names = ["Alisha", "Brian", "Mike", "Jen", "Alli", "Jordan", "Vanessa", "Austin", "Annika", "Ady", "Avery", "Madison", "Jed"];
         var kids = ["Annika", "Ady", "Avery", "Madison", "Jed"];
-        var names1 = names.filter(function(n){ return (n != nickname && n != undefined)});
-        var nickname = '';
-        var giftee = '';
-        var namesfiltername = [];
-        var namesfinal = [];
-        var finale = '';
-        var innerName = document.getElementById("welcomename").innerText;
-        var jenName = document.getElementById("jenname").innerText;
-        var madiName = document.getElementById("madiname").innerText;
-        var alishaName = document.getElementById("alishaname").innerText;
-        var brianName = document.getElementById("brianname").innerText;
-        var annikaName = document.getElementById("annikaname").innerText;
-//        var adalynName = document.getElementById("adalynname").innerText;
-//        var averyName = document.getElementById("averyname").innerText;
-//        var alliName = document.getElementById("alliname").innerText;
-//        var jordanName = document.getElementById("jordanname").innerText;
-//        var vanessaName = document.getElementById("vanessaname").innerText;
-//        var jedName = document.getElementById("jedname").innerText;
-//        var austinName = document.getElementById("austinname").innerText;
-        var lastYear = '';
-        var mike = [];
-        var jen = [];
-        var madison = [];
-        var alisha = [];
-        var brian = [];
-        var annika = [];
-        var adalyn = [];
-        var avery = [];
-        var allison = [];
-        var jordan = [];
-        var vanessa = [];
-        var jed = [];
-        var austin = [];
 
-
-        if (innerName === 'Michael Teagle') {
-            nickname = 'Mike';
-            lastYear = 'Annika';
-            namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Madison' && n != 'Jen' && n != lastYear) });
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-
-            mike.push ({name: nickname , lastYear: lastYear , giftee: finale});
-            for(var i = names1.length - 1; i >= 0; i--) {
-                if(names1[i] === finale) {
-                    names1.splice(i, 1);
+        function setName(name, lastYear, spouse, dad, mom, giftee, child1, child2, child3 ) {
+            this.name = name;
+            this.lastYear = lastYear;
+            this.spouse = spouse;
+            this.giftee = function () {
+                var namesfiltername = names.filter(function(n){ return (n != name && n != child1 && n != spouse && n != mom && n != dad && n != lastYear) && n != child2 && n != child3 });
+                var namesfinal = namesfiltername.filter(function(n){ return n != undefined});
+                var finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
+                for (var i = names.length - 1; i >= 0; i--) {
+                    if (names[i] === finale) {
+                        names.splice(i, 1);
+                    }
                 }
-            }
-
-            console.log(mike);
-            document.getElementById("allnames").innerHTML = names1;
-            document.getElementById("yourname").innerHTML = finale;
-
+                return finale;
+            };
+            this.child1 = child1;
+            this.child2 = child2;
+            this.child3 = child3;
         }
-        if (jenName === 'Jennifer Jarrett' || jenName === 'Jennifer Teagle') {
-            nickname = 'Jen';
-            lastYear = 'Vanessa';
-            namesfiltername = names1.filter(function(n){ return n != nickname && n != 'Mike' && n != "Madison" && n != lastYear});
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-            jen.push ({name: nickname , lastYear: lastYear , giftee: finale});
-            for(var i = names1.length - 1; i >= 0; i--) {
-                if(names1[i] === finale) {
-                    names1.splice(i, 1);
-                }
-            }
-            console.log(jen);
-            document.getElementById("allnames").innerHTML = namesfinal;
-            document.getElementById("jname").innerHTML = finale;
-        }
-        if (madiName === 'Madison Teagle') {
-            nickname = 'Madison';
-            namesfiltername = names.filter(function(n){ return (n != nickname && n != nickname && n != 'Jen' && n != lastYear) });
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-
-            mike.push ({name: nickname , lastYear: 'Avery', giftee: finale});
-            for(var i = names1.length - 1; i >= 0; i--) {
-                if(names1[i] === finale) {
-                    names1.splice(i, 1);
-                }
-            }
-
-            console.log(madison);
-            document.getElementById("allnames").innerHTML = names1;
-            document.getElementById("mname").innerHTML = finale;
-
-        }
-        if (brianName === 'Brian LeBaron') {
-            nickname = 'Brian';
-            lastYear = 'Mike';
-            namesfiltername = names.filter(function(n){ return (n != nickname && n != nickname && n != 'Alisha' && n != 'Ady' && n != 'Avery' && n != 'Annika' && n != lastYear) });
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-
-            brian.push ({name: nickname , lastYear: lastYear, giftee: finale});
-            for(var i = names1.length - 1; i >= 0; i--) {
-                if(names1[i] === finale) {
-                    names1.splice(i, 1);
-                }
-            }
-
-            console.log(brian);
-            document.getElementById("allnames").innerHTML = names1;
-            document.getElementById("bname").innerHTML = finale;
-        }
-        if (alishaName === 'Alisha LeBaron') {
-            nickname = "Alisha";
-            lastYear = 'Austin';
-            namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Ady' && n != 'Avery' && n != 'Annika' && n != 'Brian' && n != lastYear) });
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-
-            alisha.push ({name: nickname , lastYear: lastYear, giftee: finale});
-            for(var i = names1.length - 1; i >= 0; i--) {
-                if(names1[i] === finale) {
-                    names1.splice(i, 1);
-                }
-            }
-
-            console.log(alisha);
-            document.getElementById("allnames").innerHTML = names1;
-            document.getElementById("aname").innerHTML = finale;
-        }
-        if (annikaName === 'Annika LeBaron') {
-            nickname = "Annika";
-            lastYear = 'Jen';
-            namesfiltername = names.filter(function(n){ return (n != nickname && n != 'Alisha' && n != 'Brian' && n != 'Ady' && n != 'Avery' && n != lastYear) });
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-
-            annika.push ({name: nickname , lastYear: lastYear, giftee: finale});
-            for(var i = names1.length - 1; i >= 0; i--) {
-                if(names1[i] === finale) {
-                    names1.splice(i, 1);
-                }
-            }
-
-            console.log(annika);
-            document.getElementById("allnames").innerHTML = names1;
-            document.getElementById("anname").innerHTML = finale;
-        }
-        if (innerName === 'Allison Jarrett') {
-            nickname = 'Alli';
-            lastYear = 'Jordan';
-            namesfiltername = names.filter(function(n){ return n != nickname && n != lastYear});
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            document.getElementById("allnames").innerHTML = namesfinal;
-        }
-        if (innerName === 'Jordan Jarrett') {
-            lastYear = 'Alisha';
-            namesfiltername = names.filter(function(n){ return n != innerName & n !== 'Vanessa' && n != 'Jed' && n != lastYear});
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            document.getElementById("allnames").innerHTML = namesfinal;
-        }
-        if (innerName === 'Vanessa Jarrett') {
-            lastYear = 'Brian';
-            namesfiltername = names.filter(function(n){ return n != innerName && n != 'Jordan' && n != 'Jed' && n != lastYear });
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            document.getElementById("allnames").innerHTML = namesfinal;
-        }
-        if (innerName === 'Austin Jarrett') {
-            lastYear = 'Ady';
-            namesfiltername = names.filter(function(n){ return n != innerName & n != lastYear});
-            namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-            document.getElementById("allnames").innerHTML = namesfinal;
-        }
-
-
+        var mike = new setName('Mike', 'Annika', 'Jen', '', '', '', 'Madison', '', '');
+        document.getElementById("mikename").innerHTML = mike.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var jen = new setName('Jen', 'Vanessa', 'Mike', '', '', '', 'Madison', '', '');
+        document.getElementById("jname").innerHTML = jen.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var madison = new setName('Madison', 'Avery', 'Mike', 'Jen', '', '', '', '');
+        document.getElementById("mname").innerHTML = madison.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var alisha = new setName('Alisha', 'Austin', 'Brian', '', '', '', 'Annika', 'Ady', 'Avery');
+        document.getElementById("aname").innerHTML = alisha.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var brian = new setName('Brian', 'Mike', 'Alisha', '', '', '', 'Annika', 'Ady', 'Avery');
+        document.getElementById("bname").innerHTML = brian.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var annika = new setName('Annika', 'Jen', '', 'Brian', 'Alisha', '', 'Ady', 'Avery', '');
+        document.getElementById("anname").innerHTML = annika.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var ady = new setName('Ady', 'Alli', '', 'Brian', 'Alisha', '', 'Annika', 'Avery', '');
+        document.getElementById("adname").innerHTML = ady.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var avery = new setName('Avery', 'Jed', '', 'Brian', 'Alisha', '', 'Annika', 'Ady', '');
+        document.getElementById("avname").innerHTML = avery.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var alli = new setName('Alli', 'Jordan', '', '', '', '', '', '', '');
+        document.getElementById("alname").innerHTML = alli.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var jordan = new setName('Jordan', 'Alisha', 'Vanessa', '', '', '', 'Jed', '', '');
+        document.getElementById("joname").innerHTML = jordan.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var vanessa = new setName('Vanessa', 'Brian', 'Jordan', '', '', '', 'Jed', '', '');
+        document.getElementById("vname").innerHTML = vanessa.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var jed = new setName('Jed', 'Madison', '', 'Jordan', 'Vanessa', '', '', '', '');
+        document.getElementById("jename").innerHTML = jed.giftee();
+        document.getElementById("allnames").innerHTML = names;
+        var austin = new setName('Austin', 'Ady', '', '', '', '', '', '', '');
+        document.getElementById("auname").innerHTML = austin.giftee();
+        document.getElementById("allnames").innerHTML = names;
 
     }
 </script>
