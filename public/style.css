@@ -174,3 +174,27 @@ input[type=text], input[type=password] { line-height: 34px; }
 #nav ul {
     list-style-type: none;
 }
+.middle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.middleElement {
+    display: flex;
+    align-self: center;
+}
+.path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    -webkit-animation: dash 2s linear alternate infinite;
+}
+@-webkit-keyframes dash {
+    from {
+        stroke-dashoffset: 1000;
+        fill-opacity: 0;
+    }
+    to {
+        stroke-dashoffset: 0;
+        fill-opacity: 1;
+    }
+}

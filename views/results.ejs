@@ -14,30 +14,38 @@
 <body onload="getNames()">
 <div class="container">
     <div class="jumbotron text-center">
-            <div id="allnames">these are all of our names</div>
-            <div id="welcomename"><%= user.google.name %></div>
-            <h3>Here is your Giftee:</h3>
-            <div id="mikename">here is your pick?</div>
+        <div class="row">
+            <div class="col-sm-3"><img src="snowman.png"><figcaption id="welcomename"><%= user.google.name %></figcaption></div>
+                <div class="col-sm-4"><h3>Here is your Giftee:</h3></div>
+                <div class="col-sm-3"><img src="reindeer.png"><figcaption id="mikename">here is your pick?</figcaption></div>
+            </div>
         </div>
     <div class="jumbotron text-center">
-        <div id="jenname">Jennifer Teagle</div>
-        <h3>Here is your Giftee:</h3>
-        <div id="jname">here is your pick?</div>
+        <div class="row">
+            <div class="col-sm-3"><img src="fruitcake.png"><figcaption id="jenname">Jennifer Teagle</figcaption></div>
+            <div class="col-sm-4"><h3>Here is your Giftee:</h3></div>
+            <div class="col-sm-3"><img src="holly.png"><figcaption id="jname">here is your pick?</figcaption></div>
+</div>
+</div>
+<div class="jumbotron text-center">
+    <div class="row">
+        <div class="col-sm-3"><img src="reindeer.png"><figcaption id="madiname">Madison Teagle</figcaption></div>
+        <div class="col-sm-4"><h3>Here is your Giftee:</h3></div>
+        <div class="col-sm-3"><img src="snowflake.png"><figcaption id="mname">here is your pick?</figcaption></div>
     </div>
-    <div class="jumbotron text-center">
-        <div id="madiname">Madison Teagle</div>
-        <h3>Here is your Giftee:</h3>
-        <div id="mname">here is your pick?</div>
-    </div>
+</div>
     <div class="jumbotron text-center">
         <div id="alishaname">Alisha LeBaron</div>
         <h3>Here is your Giftee:</h3>
         <div id="aname">here is your pick?</div>
     </div>
     <div class="jumbotron text-center">
-        <div id="brianname">Brian LeBaron</div>
-        <h3>Here is your Giftee:</h3>
-        <div id="bname">here is your pick?</div>
+        <div class="row">
+            <div class="col-sm-3"><img src="bells.png"><figcaption id="brianname">Brian LeBaron</figcaption></div>
+                <div class="col-sm-4"><h3>Here is your Giftee:</h3></div>
+                <div class="col-sm-3"><img src="stocking.png"><figcaption id="bname">here is your pick</figcaption></div>
+
+                </div>
     </div>
     <div class="jumbotron text-center">
         <div id="annikaname">Annika LeBaron</div>
@@ -74,77 +82,115 @@
         <h3>Here is your Giftee:</h3>
         <div id="jename">here is your pick?</div>
     </div>
-    <div class="jumbotron text-center">
-        <div id="austinname">Austin Jarrett</div>
-        <h3>Here is your Giftee:</h3>
-        <div id="auname">here is your pick?</div>
-    </div>
+    <!--<div class="jumbotron text-center">-->
+        <!--<div id="austinname">Austin Jarrett</div>-->
+        <!--<h3>Here is your Giftee:</h3>-->
+        <!--<div id="auname">here is your pick?</div>-->
+    <!--</div>-->
 </div>
 <!--<script src="script.js"></script>-->
 <script>
-    function getNames () {
-        var names = ["Alisha", "Brian", "Mike", "Jen", "Alli", "Jordan", "Vanessa", "Austin", "Annika", "Ady", "Avery", "Madison", "Jed"];
-        var kids = ["Annika", "Ady", "Avery", "Madison", "Jed"];
-
-        function setName(name, lastYear, spouse, dad, mom, giftee, child1, child2, child3 ) {
-            this.name = name;
-            this.lastYear = lastYear;
-            this.spouse = spouse;
-            this.giftee = function () {
-                var namesfiltername = names.filter(function(n){ return (n != name && n != child1 && n != spouse && n != mom && n != dad && n != lastYear) && n != child2 && n != child3 });
-                var namesfinal = namesfiltername.filter(function(n){ return n != undefined});
-                var finale = namesfinal[Math.floor(Math.random() * namesfinal.length)];
-                for (var i = names.length - 1; i >= 0; i--) {
-                    if (names[i] === finale) {
-                        names.splice(i, 1);
-                    }
+    var names = ["Vanessa", "Annika", "Ady", "Mike", "Jen", "Alli", "Jordan", "Avery", "Madison", "Jed", "Alisha", "Brian"];
+    function setName(name, lastYear, spouse, dad, mom, giftee, child1, child2, child3 ) {
+        this.name = name;
+        this.lastYear = lastYear;
+        this.spouse = spouse;
+        this.giftee = function () {
+            var namesfilter = names.filter(function(n){ return (n != name && n != child1 && n != spouse && n != mom && n != dad && n != lastYear) && n != child2 && n != child3 && n != undefined});
+            var finale = namesfilter[0];
+            if (finale == 'undefined') {
+                finale = namesfilter[5];
+            }
+            for (var i = names.length - 1; i >= 0; i--) {
+                if (names[i] === finale) {
+                    names.splice(i, 1);
                 }
-                return finale;
-            };
-            this.child1 = child1;
-            this.child2 = child2;
-            this.child3 = child3;
+            }
+            return finale;
+        };
+        this.child1 = child1;
+        this.child2 = child2;
+        this.child3 = child3;
+    }
+    function getNames () {
+        restore();
+        var theLength = names.length - 1;
+        var toSwap; // The index we will swap  (i.e. the random number)
+        var temp; // A temporary variable to hold reference to index variable i points to
+        for (var i = theLength; i > 0; i--) {
+            toSwap = Math.floor(Math.random() * names.length);
+            temp = names[i];
+            names[i] = names[toSwap];
+            names[toSwap] = temp;
         }
-        var mike = new setName('Mike', 'Annika', 'Jen', '', '', '', 'Madison', '', '');
-        document.getElementById("mikename").innerHTML = mike.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var jen = new setName('Jen', 'Vanessa', 'Mike', '', '', '', 'Madison', '', '');
-        document.getElementById("jname").innerHTML = jen.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var madison = new setName('Madison', 'Avery', 'Mike', 'Jen', '', '', '', '');
-        document.getElementById("mname").innerHTML = madison.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var alisha = new setName('Alisha', 'Austin', 'Brian', '', '', '', 'Annika', 'Ady', 'Avery');
-        document.getElementById("aname").innerHTML = alisha.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var brian = new setName('Brian', 'Mike', 'Alisha', '', '', '', 'Annika', 'Ady', 'Avery');
-        document.getElementById("bname").innerHTML = brian.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var annika = new setName('Annika', 'Jen', '', 'Brian', 'Alisha', '', 'Ady', 'Avery', '');
-        document.getElementById("anname").innerHTML = annika.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var ady = new setName('Ady', 'Alli', '', 'Brian', 'Alisha', '', 'Annika', 'Avery', '');
-        document.getElementById("adname").innerHTML = ady.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var avery = new setName('Avery', 'Jed', '', 'Brian', 'Alisha', '', 'Annika', 'Ady', '');
-        document.getElementById("avname").innerHTML = avery.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var alli = new setName('Alli', 'Jordan', '', '', '', '', '', '', '');
-        document.getElementById("alname").innerHTML = alli.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var jordan = new setName('Jordan', 'Alisha', 'Vanessa', '', '', '', 'Jed', '', '');
-        document.getElementById("joname").innerHTML = jordan.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var vanessa = new setName('Vanessa', 'Brian', 'Jordan', '', '', '', 'Jed', '', '');
-        document.getElementById("vname").innerHTML = vanessa.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var jed = new setName('Jed', 'Madison', '', 'Jordan', 'Vanessa', '', '', '', '');
-        document.getElementById("jename").innerHTML = jed.giftee();
-        document.getElementById("allnames").innerHTML = names;
-        var austin = new setName('Austin', 'Ady', '', '', '', '', '', '', '');
-        document.getElementById("auname").innerHTML = austin.giftee();
-        document.getElementById("allnames").innerHTML = names;
 
+        document.getElementById("avname").innerHTML = localStorage.getItem("avery");
+        var mike = new setName('Mike', 'Annika', 'Jen', '', '', '', 'Madison', '', '');
+        localStorage.setItem("mike", mike.giftee());
+        document.getElementById("mikename").innerHTML = localStorage.getItem("mike");
+        var jen = new setName('Jen', 'Vanessa', 'Mike', '', '', '', 'Madison', '', '');
+        localStorage.setItem("jen", jen.giftee());
+        document.getElementById("jname").innerHTML = localStorage.getItem("jen");
+        var madison = new setName('Madison', 'Avery', 'Mike', 'Jen', '', '', '', '');
+        localStorage.setItem("madison", madison.giftee());
+        document.getElementById("mname").innerHTML = localStorage.getItem("madison");
+        var alli = new setName('Alli', 'Jordan', '', '', '', '', '', '', '');
+        localStorage.setItem("alli", alli.giftee());
+        document.getElementById("alname").innerHTML = localStorage.getItem("alli");
+        var jordan = new setName('Jordan', 'Alisha', 'Vanessa', '', '', '', 'Jed', '', '');
+        localStorage.setItem("jordan", jordan.giftee());
+        document.getElementById("jorname").innerHTML = localStorage.getItem("jordan");
+        var vanessa = new setName('Vanessa', 'Brian', 'Jordan', '', '', '', 'Jed', '', '');
+        localStorage.setItem("vanessa", vanessa.giftee());
+        document.getElementById("vname").innerHTML = localStorage.getItem("vanessa");
+        var jed = new setName('Jed', 'Madison', '', 'Jordan', 'Vanessa', '', '', '', '');
+        localStorage.setItem("jed", jed.giftee());
+        document.getElementById("jename").innerHTML = localStorage.getItem("jed");
+        var alisha = new setName('Alisha', 'Austin', 'Brian', '', '', '', 'Annika', 'Ady', 'Avery');
+        localStorage.setItem("alisha", alisha.giftee());
+        document.getElementById("aname").innerHTML = localStorage.getItem("alisha");
+        var brian = new setName('Brian', 'Mike', 'Alisha', '', '', '', 'Annika', 'Ady', 'Avery');
+        localStorage.setItem("brian", brian.giftee());
+        document.getElementById("bname").innerHTML = localStorage.getItem("brian");
+        var annika = new setName('Annika', 'Jen', '', 'Brian', 'Alisha', '', 'Ady', 'Avery', '');
+        localStorage.setItem("annika", annika.giftee());
+        document.getElementById("anname").innerHTML = localStorage.getItem("annika");
+        var ady = new setName('Ady', 'Alli', '', 'Brian', 'Alisha', '', 'Annika', 'Avery', '');
+        localStorage.setItem("ady", ady.giftee());
+        document.getElementById("adname").innerHTML = localStorage.getItem("ady");
+        var avery = new setName('Avery', 'Jed', '', 'Brian', 'Alisha', '', 'Annika', 'Ady', '');
+        localStorage.setItem("avery", avery.giftee());
+        //  var austin = new setName('Austin', 'Ady', '', '', '', '', '', '', '');
+        //  document.getElementById("auname").innerHTML = austin.giftee();
+    }
+    function restore () {
+        if(!localStorage["alisha"]) {
+            return;
+        }
+        alisha = localStorage.getItem("alisha");
+        brian = localStorage.getItem("brian");
+        jen = localStorage.getItem("jen");
+        mike = localStorage.getItem("mike");
+        madison = localStorage.getItem("madison");
+        annika = localStorage.getItem("annika");
+        ady = localStorage.getItem("ady");
+        avery = localStorage.getItem("avery");
+        alli = localStorage.getItem("alli");
+        jordan = localStorage.getItem("jordan");
+        vanessa = localStorage.getItem("vanessa");
+        jed = localStorage.getItem("jed");
+        document.getElementById("aname").innerHTML = localStorage.getItem("alisha");
+        document.getElementById("bname").innerHTML = localStorage.getItem("brian");
+        document.getElementById("anname").innerHTML = localStorage.getItem("annika");
+        document.getElementById("avname").innerHTML = localStorage.getItem("avery");
+        document.getElementById("adname").innerHTML = localStorage.getItem("ady");
+        document.getElementById("alname").innerHTML = localStorage.getItem("alli");
+        document.getElementById("mikename").innerHTML = localStorage.getItem("mike");
+        document.getElementById("jname").innerHTML = localStorage.getItem("jen");
+        document.getElementById("mname").innerHTML = localStorage.getItem("madison");
+        document.getElementById("jorname").innerHTML = localStorage.getItem("jordan");
+        document.getElementById("vname").innerHTML = localStorage.getItem("vanessa");
+        document.getElementById("jename").innerHTML = localStorage.getItem("jed");
     }
 </script>
 </body>
